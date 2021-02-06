@@ -6,7 +6,7 @@ const home = () => {
     <div>
      <p>ReactApp home</p>
     </div>
-  );
+    );
 }
 
 export default home;
