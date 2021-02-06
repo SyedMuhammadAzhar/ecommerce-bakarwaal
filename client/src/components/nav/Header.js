@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 
 import { Menu } from 'antd';
 import { HomeOutlined , SettingOutlined,UserOutlined,UserAddOutlined } from '@ant-design/icons';
+import {Link} from "react-router-dom";
 
 const { SubMenu } = Menu; //Menu.subMenu   its destructoring
+
+
 
 const Header =()=>{
 
@@ -24,15 +27,15 @@ const Header =()=>{
     return (
         <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
           <Menu.Item key="home" icon={<HomeOutlined />}>
-            Home
+            <Link to="/">Home</Link>
           </Menu.Item>
 
           <Menu.Item key="login" icon={<UserOutlined />} className="float-right">
-            Login
+          <Link to="/login">Login</Link>
           </Menu.Item>
 
           <Menu.Item key="register" icon={<UserAddOutlined /> } className="float-right">
-            Register
+          <Link to="/register">Register</Link>
           </Menu.Item>
 
 
