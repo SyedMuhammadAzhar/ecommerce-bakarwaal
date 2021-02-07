@@ -21,6 +21,61 @@ const RegisterComplete = ({history}) => {
 
 
   const handleSubmit = async (e) => {
+
+    e.preventDefault();
+
+
+    if(!email || !password){
+
+        toast.error('Email and password is required');
+        return;
+    }
+    if(password.length<6){
+
+        toast.error('Password should be atleast 6 character or more');
+    }
+
+    try{
+
+
+        //emai, is user entered email and location.href is user current url
+        const result= await auth.signInWithEmailLink(email,window.location.href);
+
+        console.log(result);
+
+        //result.user.emailVerified mean when user is registered in firebase
+        if(result.user.emailVerified===true){
+
+            console.log("email verifieddd")
+
+            //remove user email from localstorage
+            window.localStorage.removeItem("emailForRegistration");
+
+
+           
+            //currently loggedin user
+            const user = auth.currentUser;
+
+             //get user id token
+            const idTokenResult= await user.getIdTokenResult(); 
+
+            //redux store
+
+
+
+            history.push('/');
+
+        }
+
+
+
+    }catch(error){
+
+        toast.error(error);
+
+    }
+
+
   
   };
 
